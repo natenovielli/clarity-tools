@@ -43,13 +43,14 @@ class Session extends React.Component<any, any> {
             let infoItems = [];
             let contentStyles = { paddingLeft: 0, paddingRight: 0 };
             if (active) {
-                if (impression.envelope.date) infoItems.push({title: impression.envelope.date, icon: DateIcon});
-                //infoItems.push({title: impression.envelope.impressionGuid || impression.envelope.impressionId.toUpperCase(), icon: ImpressionIcon});
-                //infoItems.push({title: impression.envelope.clientId || impression.envelope.clarityId.toUpperCase(), icon: UserIcon});
+                if (impression.envelope.date) {
+                    infoItems.push({title: impression.envelope.date, icon: DateIcon}); 
+                }
+
                 infoItems.push({title: <a href={impression.envelope.url} target="_blank">Link</a>, icon: LinkIcon});
             }
-            let stepClassName = active ? "clarity-steptitle active-step" : "clarity-steptitle";
 
+            let stepClassName = active ? "clarity-steptitle active-step" : "clarity-steptitle";
             return (
                 <Step key={impression.envelope.impressionId} active={active}>
                     <StepButton onClick={() => this.props.selectImpression(impression)} disabled={disabled}>

@@ -19,7 +19,6 @@ import * as CopyToClipboard from 'react-copy-to-clipboard';
 import { selectSnapshot, togglePlayback, toggleSpeed, selectImpression, toggleBoxModel } from "../actions";
 import Slider from "./Slider";
 import Timer from "./Timer";
-import compress from '../compress';
 import uncompress from '../uncompress'
 
 class Player extends React.Component<any, any> {

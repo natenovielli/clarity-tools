@@ -11,7 +11,6 @@ import { Provider } from 'react-redux';
 import ClarityReducer from "../visualization/reducers";
 import { Types } from "../visualization/actions";
 import uncompress from "../visualization/uncompress";
-import * as $ from "jquery";
 
 injectTapEventPlugin();
 
@@ -27,7 +26,6 @@ ReactDOM.render(
 );
 
 let activeTabId = parseInt(location.href.match(/\?tab=([0-9]*$)/)[1]);
-let sharingId = null;
 chrome.runtime.sendMessage({ fetch: true }, function (response) {
     if (response && response.payloads) {
         let payloads = response.payloads;
@@ -35,8 +33,7 @@ chrome.runtime.sendMessage({ fetch: true }, function (response) {
     }
 });
 
-var processData = function (data) {
-    let payloads = data;
+var processData = function (payloads) {
     let size = 0;
     let count = 0;
     let structured = {};
