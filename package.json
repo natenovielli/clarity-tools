@@ -62,6 +62,7 @@
     "convertEdge": "node_modules/.bin/copyfiles -f src/extension/edge/* extension-edge/",
     "reorg": "node_modules/.bin/copyfiles -f extension/* extension-chrome/",
     "cleanExtension": "node_modules/.bin/del-cli extension/",
+    "buildChromeExtension": "npm run compile && npm run bundle:content && npm run binplace:extensionChrome && npm run bundle:visualization && npm run reorg && npm run cleanExtension",
     "build": "npm run compile && npm run bundle:content && npm run binplace:extensionChrome && npm run bundle:visualization && npm run binplace:extensionEdge && npm run convertEdge && npm run reorg && npm run cleanExtension"
   }
 }
