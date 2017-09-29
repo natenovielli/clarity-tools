@@ -83,6 +83,7 @@ export default class Layout implements IParser {
             case "*DOC*":
                 state = layoutState as IDoctypeLayoutState;
                 if (typeof XMLSerializer !== "undefined") {
+                    this.layouts = {};
                     doc.open();
                     doc.write(new XMLSerializer().serializeToString(
                         this.document.implementation.createDocumentType(
@@ -161,13 +162,13 @@ export default class Layout implements IParser {
         var node = <HTMLElement>this.layouts[state.index];
         if (node) {
             // First remove all its existing attributes
-            if (node.attributes) {
-                var len = node.attributes.length;
-                while (node.attributes && len > 0) {
+            if (node.attributes) { 
+                var attributes = node.attributes.length;
+                while (node.attributes && attributes > 0) {
                     node.removeAttribute(node.attributes[0].name);
-                    len--;
-                }
-            }
+                    attributes--;
+                } 
+            }       
             // Then, update attributes from the new received event state
             this.attributes(node, state.attributes);
             // Special handling for image nodes

@@ -17,6 +17,8 @@ import PrevIcon from 'material-ui/svg-icons/av/skip-previous';
 import ShareIcon from 'material-ui/svg-icons/communication/screen-share';
 import * as CopyToClipboard from 'react-copy-to-clipboard';
 import { selectSnapshot, togglePlayback, toggleSpeed, selectImpression, toggleBoxModel } from "../actions";
+import FullPageIcon from 'material-ui/svg-icons/action/aspect-ratio';
+import { selectSnapshot, togglePlayback, toggleSpeed, selectImpression, toggleBoxModel, toggleFullPage } from "../actions";
 import Slider from "./Slider";
 import Timer from "./Timer";
 import uncompress from '../uncompress'
@@ -100,6 +102,10 @@ class Player extends React.Component<any, any> {
 
     toggleBoxModel() {
         this.props.toggleBoxModel(!this.props.boxmodel);
+    }
+
+    showFullPage() {
+        this.props.showFullPage(!this.props.fullpage);
     }
 
     playback() {
@@ -283,6 +289,7 @@ class Player extends React.Component<any, any> {
         var Icon = this.props.playback ? <PauseIcon /> : <PlayIcon />;
         var speedIconColor = this.props.speed ? "white" : "#333";
         var boxmodelIconColor = this.props.boxmodel ? "white" : "#666";
+<<<<<<< HEAD
         var prevIconColor = index > 0 ? "white" : "#333";
         var nextIconColor = index < (this.props.session.length - 1) ? "white" : "#333";
 
@@ -356,6 +363,33 @@ class Player extends React.Component<any, any> {
                             {this.state.message}<a href={this.state.url} target="_blank">{this.state.url}</a>
                         </div>
                     </Dialog>
+=======
+        var fullPageIconColor = this.props.fullpage ? "white" : "#666";
+        var prevIconColor = index > 0 ? "white" : "#666";
+        var nextIconColor = index < (this.props.playlist.length - 1) ? "white" : "#666";
+        
+        return (
+            <div className="clarity-player">
+                <div className="clarity-controls">
+                    <IconButton iconStyle={{ color: "white" }} onClick={this.togglePlayback.bind(this)} >
+                        {Icon}
+                    </IconButton>
+                    <IconButton iconStyle={{ color: prevIconColor }} onClick={this.playImpression.bind(this, index - 1)} >
+                        <PrevIcon />
+                    </IconButton>
+                    <IconButton iconStyle={{ color: nextIconColor }} onClick={this.playImpression.bind(this, index + 1)} >
+                        <NextIcon />
+                    </IconButton>
+                    <IconButton iconStyle={{ color: speedIconColor }} onClick={this.toggleSpeed.bind(this)} >
+                        <TimelapseIcon />
+                    </IconButton>
+                    <IconButton iconStyle={{ color: boxmodelIconColor }} onClick={this.toggleBoxModel.bind(this)} >
+                        <BoxModelIcon />
+                    </IconButton>
+                    <IconButton iconStyle={{ color: fullPageIconColor }} onClick={this.showFullPage.bind(this)} >
+                        <FullPageIcon />
+                    </IconButton>
+>>>>>>> cfc799cd1a8d96d0fe6e495b6476f5173364e33c
                 </div>
             );
         } else {
@@ -394,6 +428,7 @@ export default connect(
             snapshot: state.snapshot,
             playback: state.playback,
             speed: state.speed,
+            fullpage: state.fullpage,
             boxmodel: state.boxmodel
         }
     },
@@ -402,6 +437,7 @@ export default connect(
         togglePlayback: togglePlayback, 
         toggleSpeed: toggleSpeed, 
         toggleBoxModel: toggleBoxModel, 
+        showFullPage: toggleFullPage,
         selectImpression: selectImpression 
     }, dispatch) }
 )(Player);
