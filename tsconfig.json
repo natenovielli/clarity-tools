@@ -25,7 +25,7 @@
     "exclude": [
         "node_modules",
         "visualization",
-        "extension"
+        "extensions"
     ],
     "compileOnSave": true,
     "buildOnSave": false,
